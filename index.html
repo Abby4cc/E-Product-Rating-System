@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Product Rating System</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome for stars -->
 </head>
 <body>
     <header>
@@ -16,35 +17,27 @@
             <h2>Products</h2>
             <div id="products-container">
                 <!-- Sample Product 1 -->
-                <div class="product">
-                    <img src="images/image 1.jpg" alt="Product 1">
+                <div class="product" data-product-id="1">
+                    <img src="assets/image 1.jpg" alt="Chunky Heel">
                     <h3>Chunky Heel</h3>
-                    <p>Average Rating: <span class="average-rating">4.5</span></p>
-                    <p>Reviews: <span class="review-count">10</span></p>
                 </div>
                 
                 <!-- Sample Product 2 -->
-                <div class="product">
-                    <img src="images/Image 2.jpg" alt="Product 2">
-                    <h3>Product 2</h3>
-                    <p>Average Rating: <span class="average-rating">3.8</span></p>
-                    <p>Reviews: <span class="review-count">5</span></p>
+                <div class="product" data-product-id="2">
+                    <img src="assets/Image 3.jpg" alt="Handbag">
+                    <h3>Handbag</h3>
+
                 </div>
                 
-                <!-- Sample Product 3 -->
-                <div class="product">
-                    <img src="images/Image 3.jpg" alt="Product 3">
+                <div class="product" data-product-id="3">
+                    <img src="assets/image 4.jpg" alt="Product 3">
                     <h3>Product 3</h3>
-                    <p>Average Rating: <span class="average-rating">4.0</span></p>
-                    <p>Reviews: <span class="review-count">8</span></p>
                 </div>
                 
-                <!-- Sample Product 4 -->
-                <div class="product">
-                    <img src="images/image 4.jpg" alt="Product 4">
+                <div class="product" data-product-id="4">
+                    <img src="assets/Image 2.jpg" alt="Product 4">
                     <h3>Product 4</h3>
-                    <p>Average Rating: <span class="average-rating">5.0</span></p>
-                    <p>Reviews: <span class="review-count">12</span></p>
+                    
                 </div>
             </div>
         </section>
@@ -54,8 +47,8 @@
             <form id="rating-form">
                 <label for="product-id">Select Product:</label>
                 <select id="product-id" required>
-                    <option value="1">Product 1</option>
-                    <option value="2">Product 2</option>
+                    <option value="1">Chunky heel</option>
+                    <option value="2">Handbag</option>
                     <option value="3">Product 3</option>
                     <option value="4">Product 4</option>
                 </select>
@@ -63,9 +56,16 @@
                 <label for="review">Your Review:</label>
                 <textarea id="review" placeholder="Write your review" required></textarea>
                 
-                <label for="rating">Rate (1-5):</label>
-                <input type="number" id="rating" min="1" max="5" placeholder="Rate 1-5" required>
-                
+                <label for="rating">Rate:</label>
+                <div class="star-rating-input">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+                <input type="hidden" id="rating" required>
+
                 <button type="submit">Submit Rating</button>
             </form>
         </section>
@@ -75,6 +75,6 @@
         <p>&copy; 2025 E-Product Rating System</p>
     </footer>
 
-    <script src="index.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -70,6 +70,31 @@ h2 {
     margin: 5px 0;
 }
 
+/* Star Rating Display */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 20px;
+    color: gold;
+}
+
+/* Star Rating Input */
+.star-rating-input {
+    display: flex;
+    gap: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    color: gray;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.star-rating-input .star:hover,
+.star-rating-input .star.active {
+    color: gold;
+}
+
 #rating-section {
     margin-top: 30px;
 }
@@ -104,16 +129,10 @@ button {
 }
 
 button:hover {
-    background: #0056b3;
+    background: #0f0e0e;
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
-    padding: 10px 0;
-    background: #ff0066;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
