@@ -10,8 +10,6 @@ The E-Product Rating System is a web application that allows users to rate and r
 - **Product Listing Page**: View a list of products with their names, images, and average ratings.
 - **Rating Submission**: Submit a rating (1-5 stars) and a written review for each product.
 - **Display Ratings and Reviews**: View the average rating and user reviews for each product.
-- **Basic Validation**: Ensure valid ratings and reviews are submitted.
-- **Responsive Design**: Accessible on both desktop and mobile devices.
 
 ## Technologies Used
 
