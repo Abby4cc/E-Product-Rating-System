@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
+//ratings
     ratingForm.addEventListener("submit", function (event) {
         event.preventDefault();
         alert("Rating submitted successfully!");
