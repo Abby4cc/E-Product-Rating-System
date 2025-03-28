@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    showSection("home"); 
+    showSection("home");
     setupEventListeners();
+    fetchProducts();
 });
 
 function showSection(sectionId) {
@@ -11,10 +12,15 @@ function showSection(sectionId) {
 }
 
 function setupEventListeners() {
-    document.getElementById("view-products-btn").addEventListener("click", handleViewProducts);
-    document.getElementById("search").addEventListener("input", handleSearch);
-    document.querySelector(".close").addEventListener("click", closeModal);
-    document.getElementById("submit-review-btn").addEventListener("click", submitReview);
+    const viewProductsBtn = document.getElementById("view-products-btn");
+    const searchInput = document.getElementById("search");
+    const closeModalBtn = document.querySelector(".close");
+    const submitReviewBtn = document.getElementById("submit-review-btn");
+
+    if (viewProductsBtn) viewProductsBtn.addEventListener("click", handleViewProducts);
+    if (searchInput) searchInput.addEventListener("input", handleSearch);
+    if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+    if (submitReviewBtn) submitReviewBtn.addEventListener("click", submitReview);
 }
 
 function handleViewProducts() {
@@ -40,14 +46,14 @@ function fetchProducts() {
 
 function displayProducts(products) {
     const container = document.getElementById("products-container");
-    container.innerHTML = ""; 
+    container.innerHTML = "";
 
     products.forEach(product => {
         const productDiv = document.createElement("div");
         productDiv.classList.add("product");
         productDiv.dataset.id = product.id;
         productDiv.innerHTML = `
-            <img src="${product.image}" alt="${product.title}">
+            <img src="assets/${product.image}" alt="${product.title}">
             <h3>${product.title}</h3>
             <p>Price: $${product.price.toFixed(2)}</p>
             <p>${product.rating} ⭐ (${product.reviews.length} reviews)</p>
@@ -59,26 +65,12 @@ function displayProducts(products) {
     document.querySelectorAll(".rate-product-btn").forEach(button => {
         button.addEventListener("click", handleRateProduct);
     });
-
-    document.querySelectorAll(".product img").forEach(img => {
-        img.addEventListener("mouseover", handleHoverEffect);
-        img.addEventListener("mouseout", removeHoverEffect);
-    });
 }
 
 function handleRateProduct(event) {
     const productDiv = event.target.closest(".product");
     const productName = productDiv.querySelector("h3").textContent;
     openRatingModal(productName);
-}
-
-function handleHoverEffect(event) {
-    event.target.style.transform = "scale(1.1)";
-    event.target.style.transition = "transform 0.3s ease";
-}
-
-function removeHoverEffect(event) {
-    event.target.style.transform = "scale(1)";
 }
 
 function filterProducts(searchTerm) {
@@ -89,11 +81,14 @@ function filterProducts(searchTerm) {
 }
 
 function openRatingModal(productName) {
-    document.getElementById("reviewer-name").value = "";
-    document.getElementById("review-text").value = "";
-    document.getElementById("review-modal").style.display = "block";
-    document.getElementById("review-modal").dataset.productName = productName;
-    highlightStars(0);
+    const modal = document.getElementById("review-modal");
+    if (modal) {
+        document.getElementById("reviewer-name").value = "";
+        document.getElementById("review-text").value = "";
+        modal.style.display = "block";
+        modal.dataset.productName = productName;
+        highlightStars(0);
+    }
 }
 
 function highlightStars(value) {
@@ -103,6 +98,12 @@ function highlightStars(value) {
     });
     document.getElementById("review-modal").dataset.rating = value;
 }
+
+document.querySelectorAll(".star").forEach(star => {
+    star.addEventListener("click", event => {
+        highlightStars(event.target.dataset.value);
+    });
+});
 
 function submitReview() {
     const reviewerName = document.getElementById("reviewer-name").value.trim();
@@ -137,8 +138,31 @@ function submitReview() {
             }).then(() => {
                 alert("Review submitted successfully!");
                 document.getElementById("review-modal").style.display = "none";
-                updateReviewSection();
+                updateReviewSection(product);
+                updateRatingChart(products);
             });
         })
         .catch(error => console.error("Error submitting review:", error));
+}
+
+function updateReviewSection(product) {
+    const reviewContainer = document.getElementById("customer-reviews");
+    reviewContainer.innerHTML = "";
+    product.reviews.forEach(review => {
+        const reviewDiv = document.createElement("div");
+        reviewDiv.innerHTML = `<p><strong>${review.name}:</strong> ${review.text} (${review.rating} ⭐)</p>`;
+        reviewContainer.appendChild(reviewDiv);
+    });
+}
+
+function updateRatingChart(products) {
+    const ratingCounts = Array(5).fill(0);
+    products.forEach(product => {
+        product.reviews.forEach(review => {
+            ratingCounts[review.rating - 1]++;
+        });
+    });
+
+    console.log("Rating counts:", ratingCounts);
+
 }

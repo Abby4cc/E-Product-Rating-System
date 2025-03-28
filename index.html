@@ -5,122 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Product Rating System</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script defer src="index.js"></script>
 </head>
 <body>
-    
     <header>
-        <h1>E-PRODUCT RATING SYSTEM</h1>
+        <h1>E-Product Rating System</h1>
         <div class="icons">
-            <span class="icon">🔍</span>
-            <span class="icon">👤</span>
-            <span class="icon">❤️</span>
             <span class="icon">🛒</span>
+            <span class="icon">❤️</span>
         </div>
     </header>
-
-    <main>
-        <section id="home" class="section">
-            <h2>Welcome to Our E-Product Rating System</h2>
-            <p>Explore our range of products and share your ratings!</p>
-            <button id="view-products-btn">View Products</button>
-        </section>
-
-        <section id="products" class="section" style="display: none;">
-            <h2>Products</h2>
-            <input type="search" id="search" placeholder="Search products...">
-            <button id="search-btn">Search</button>
-            <div id="products-container">
-                <div class="product" data-id="1">
-                    <img src="assets/image 1.jpg" alt="Chunky Heels">
-                    <h3>Chunky Heels</h3>
-                    <p>Price: $20.00</p>
-                    <p>4.5 ⭐ (10 reviews)</p>
-                    <button class="rate-product-btn">Rate Product</button>
-                </div>
-                <div class="product" data-id="2">
-                    <img src="assets/Image 2.jpg" alt="Leather Bag">
-                    <h3>Leather Bag</h3>
-                    <p>Price: $10.00</p>
-                    <p>4.0 ⭐ (5 reviews)</p>
-                    <button class="rate-product-btn">Rate Product</button>
-                </div>
-                <div class="product" data-id="3">
-                    <img src="assets/Image 3.jpg" alt="Dinner Bag">
-                    <h3>Dinner Bag</h3>
-                    <p>Price: $9.99</p>
-                    <p>4.0 ⭐ (5 reviews)</p>
-                    <button class="rate-product-btn">Rate Product</button>
-                </div>
-                <div class="product" data-id="4">
-                    <img src="assets/image 4.jpg" alt="Stiletto Heels">
-                    <h3>Stiletto Heels</h3>
-                    <p>Price: $29.99</p>
-                    <p>4.0 ⭐ (5 reviews)</p>
-                    <button class="rate-product-btn">Rate Product</button>
-                </div>
-                <div class="product" data-id="5">
-                    <img src="assets/Image 5.jpg" alt="Ankle Boots">
-                    <h3>Ankle Boots</h3>
-                    <p>Price: $15.00</p>
-                    <p>4.0 ⭐ (5 reviews)</p>
-                    <button class="rate-product-btn">Rate Product</button>
-                </div>
-                 <div class="product" data-id="6">
-                    <img src="assets/image 6.jpg" alt="Leather Jacket">
-                    <h3>Leather Jacket</h3>
-                    <p>Price: $8.99</p>
-                    <p>4.0 ⭐ (5 reviews)</p>
-                    <button class="rate-product-btn">Rate Product</button>
-                </div>
+    
+    <section id="home" class="section">
+        <h2>Welcome to Our Product Rating System</h2>
+        <p>Find the best products and leave your reviews!</p>
+        <input type="text" id="search" placeholder="Search for a product...">
+        <button id="search-btn">Search</button>
+        
+        <div id="products-container">
+            <div class="product" data-id="1">
+                <img src="assets/image 1.jpg" alt="Chunky Heels">
+                <h3>Chunky Heels</h3>
+                <p>Price: $20.00</p>
+                <p>4.5 ⭐ (10 reviews)</p>
+                <button class="rate-product-btn">Rate Product</button>
             </div>
-        </section>
-
-        <section>
-            <div class="rating-summary">
-                <div class="rating-header">
-                    <span class="average-rating"><strong id="average-rating">0.0</strong> ⭐</span>
-                    <span id="total-responses">0 responses</span>
-                </div>
-
-                <div class="rating-breakdown">
-                    <div class="rating-bar"><span>5 ⭐</span><div class="progress-bar"><div id="bar-5"></div></div><span id="count-5">0</span></div>
-                    <div class="rating-bar"><span>4 ⭐</span><div class="progress-bar"><div id="bar-4"></div></div><span id="count-4">0</span></div>
-                    <div class="rating-bar"><span>3 ⭐</span><div class="progress-bar"><div id="bar-3"></div></div><span id="count-3">0</span></div>
-                    <div class="rating-bar"><span>2 ⭐</span><div class="progress-bar"><div id="bar-2"></div></div><span id="count-2">0</span></div>
-                    <div class="rating-bar"><span>1 ⭐</span><div class="progress-bar"><div id="bar-1"></div></div><span id="count-1">0</span></div>
-                </div>
+            <div class="product" data-id="2">
+                <img src="assets/Image 2.jpg" alt="Leather Bag">
+                <h3>Leather Bag</h3>
+                <p>Price: $10.00</p>
+                <p>4.0 ⭐ (5 reviews)</p>
+                <button class="rate-product-btn">Rate Product</button>
             </div>
-
-            <div class="reviews">
-                <h3>Customer Reviews</h3>
-                <div id="review-list"></div>
+            <div class="product" data-id="3">
+                <img src="assets/Image 3.jpg" alt="Dinner Bag">
+                <h3>Dinner Bag</h3>
+                <p>Price: $9.99</p>
+                <p>4.0 ⭐ (5 reviews)</p>
+                <button class="rate-product-btn">Rate Product</button>
             </div>
-        </section>
-
-        <div id="review-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Rate This Product</h2>
-                <input type="text" id="reviewer-name" placeholder="Your Name">
-                <textarea id="review-text" placeholder="Your Review"></textarea>
-
-                <div class="stars">
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
-                </div>
-
-                <button id="submit-review-btn">Submit Review</button>    
+            <div class="product" data-id="4">
+                <img src="assets/image 4.jpg" alt="Stiletto Heels">
+                <h3>Stiletto Heels</h3>
+                <p>Price: $29.99</p>
+                <p>4.0 ⭐ (5 reviews)</p>
+                <button class="rate-product-btn">Rate Product</button>
+            </div>
+            <div class="product" data-id="5">
+                <img src="assets/Image 5.jpg" alt="Ankle Boots">
+                <h3>Ankle Boots</h3>
+                <p>Price: $15.00</p>
+                <p>4.0 ⭐ (5 reviews)</p>
+                <button class="rate-product-btn">Rate Product</button>
+            </div>
+            <div class="product" data-id="6">
+                <img src="assets/image 6.jpg" alt="Leather Jacket">
+                <h3>Leather Jacket</h3>
+                <p>Price: $8.99</p>
+                <p>4.0 ⭐ (5 reviews)</p>
+                <button class="rate-product-btn">Rate Product</button>
             </div>
         </div>
-    </main>
+
+        <div class="rating-summary">
+            <div class="rating-header">
+                <span class="average-rating"><strong id="average-rating">0.0</strong> ⭐</span>
+                <span id="total-responses">0 responses</span>
+            </div>
+
+            <div class="rating-breakdown">
+                <div class="rating-bar"><span>5 ⭐</span><div class="progress-bar"><div id="bar-5"></div></div><span id="count-5">0</span></div>
+                <div class="rating-bar"><span>4 ⭐</span><div class="progress-bar"><div id="bar-4"></div></div><span id="count-4">0</span></div>
+                <div class="rating-bar"><span>3 ⭐</span><div class="progress-bar"><div id="bar-3"></div></div><span id="count-3">0</span></div>
+                <div class="rating-bar"><span>2 ⭐</span><div class="progress-bar"><div id="bar-2"></div></div><span id="count-2">0</span></div>
+                <div class="rating-bar"><span>1 ⭐</span><div class="progress-bar"><div id="bar-1"></div></div><span id="count-1">0</span></div>
+            </div>
+        </div>
+
+        <div class="reviews">
+            <h3>Customer Reviews</h3>
+            <div id="review-list"></div>
+        </div>
+    </section> 
+
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Rate <span id="modal-product-name"></span></h3>
+            <input type="text" id="reviewer-name" placeholder="Your Name">
+            <textarea id="review-text" placeholder="Write your review..."></textarea>
+            <div class="stars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <button id="submit-review-btn">Submit Review</button>
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; 2025 E-Product Rating System</p>
+        <p>&copy; 2025 E-Product Rating System. All rights reserved.</p>
     </footer>
-
-    <script src="index.js"></script>
 </body>
 </html>
