@@ -11,34 +11,24 @@ function showSection(sectionId) {
 }
 
 function setupEventListeners() {
-    document.getElementById("view-products-btn").addEventListener("click", () => {
-        showSection("products");
-        fetchProducts();
-    });
-
-    document.getElementById("search-btn").addEventListener("click", () => {
-        const searchTerm = document.getElementById("search").value.trim().toLowerCase();
-        filterProducts(searchTerm);
-    });
-
-    document.getElementById("search").addEventListener("input", (event) => {
-        const searchTerm = event.target.value.trim().toLowerCase();
-        filterProducts(searchTerm);
-    });
-
-    document.querySelector(".close").addEventListener("click", () => {
-        document.getElementById("review-modal").style.display = "none";
-    });
-
+    document.getElementById("view-products-btn").addEventListener("click", handleViewProducts);
+    document.getElementById("search").addEventListener("input", handleSearch);
+    document.querySelector(".close").addEventListener("click", closeModal);
     document.getElementById("submit-review-btn").addEventListener("click", submitReview);
+}
 
-    
-    document.querySelectorAll(".star").forEach(star => {
-        star.addEventListener("click", (event) => {
-            let ratingValue = event.target.dataset.value;
-            highlightStars(ratingValue);
-        });
-    });
+function handleViewProducts() {
+    showSection("products");
+    fetchProducts();
+}
+
+function handleSearch(event) {
+    const searchTerm = event.target.value.trim().toLowerCase();
+    filterProducts(searchTerm);
+}
+
+function closeModal() {
+    document.getElementById("review-modal").style.display = "none";
 }
 
 function fetchProducts() {
@@ -67,12 +57,28 @@ function displayProducts(products) {
     });
 
     document.querySelectorAll(".rate-product-btn").forEach(button => {
-        button.addEventListener("click", (event) => {
-            const productDiv = event.target.closest(".product");
-            const productName = productDiv.querySelector("h3").textContent;
-            openRatingModal(productName);
-        });
+        button.addEventListener("click", handleRateProduct);
     });
+
+    document.querySelectorAll(".product img").forEach(img => {
+        img.addEventListener("mouseover", handleHoverEffect);
+        img.addEventListener("mouseout", removeHoverEffect);
+    });
+}
+
+function handleRateProduct(event) {
+    const productDiv = event.target.closest(".product");
+    const productName = productDiv.querySelector("h3").textContent;
+    openRatingModal(productName);
+}
+
+function handleHoverEffect(event) {
+    event.target.style.transform = "scale(1.1)";
+    event.target.style.transition = "transform 0.3s ease";
+}
+
+function removeHoverEffect(event) {
+    event.target.style.transform = "scale(1)";
 }
 
 function filterProducts(searchTerm) {
@@ -95,7 +101,6 @@ function highlightStars(value) {
         star.style.color = star.dataset.value <= value ? "gold" : "#ccc";
         star.classList.toggle("active", star.dataset.value <= value);
     });
-
     document.getElementById("review-modal").dataset.rating = value;
 }
 
@@ -132,70 +137,8 @@ function submitReview() {
             }).then(() => {
                 alert("Review submitted successfully!");
                 document.getElementById("review-modal").style.display = "none";
-
-                displayCustomerReviews(product.reviews);
-                updateStarBars(product.reviews);
-                document.getElementById("averageRating").innerText = product.rating;
-                document.getElementById("totalResponses").innerText = `${product.reviews.length} responses`;
+                updateReviewSection();
             });
         })
         .catch(error => console.error("Error submitting review:", error));
-}
-
-function updateReviewSection() {
-    console.log("Updating Review Section...");
-
-    fetch("http://localhost:3000/products")
-        .then(response => response.json())
-        .then(products => {
-            const productName = document.getElementById("review-modal").dataset.productName;
-            const product = products.find(p => p.title === productName);
-
-            if (!product) return;
-
-            const totalResponses = product.reviews.length;
-            const averageRating = parseFloat(product.rating);
-
-            document.getElementById("averageRating").innerText = averageRating.toFixed(1);
-            document.getElementById("totalResponses").innerText = `${totalResponses} responses`;
-
-            updateStarBars(product.reviews);
-            displayCustomerReviews(product.reviews);
-        })
-        .catch(error => console.error("Error updating reviews:", error));
-}
-
-function updateStarBars(reviews) {
-    const starCounts = [0, 0, 0, 0, 0]; 
-
-    reviews.forEach(review => {
-        starCounts[review.rating - 1]++;
-    });
-
-    let highestCount = Math.max(...starCounts);
-
-    starCounts.forEach((count, index) => {
-        let bar = document.getElementById(`star${5 - index}-bar`);
-        let percentage = reviews.length ? (count / reviews.length) * 100 : 0;
-        bar.style.width = percentage + "%";
-
-
-        bar.style.backgroundColor = count === highestCount && count > 0 ? "gold" : "#ccc";
-
-        console.log(`Updated bar for ${5 - index} stars: ${percentage}%`);
-    });
-}
-
-function displayCustomerReviews(reviews) {
-    const reviewsContainer = document.getElementById("customer-reviews");
-    reviewsContainer.innerHTML = ""; 
-
-    reviews.forEach(review => {
-        const reviewDiv = document.createElement("div");
-        reviewDiv.classList.add("review");
-        reviewDiv.innerHTML = `
-            <p><strong>${review.name}</strong>: ${review.text} - ${review.rating} ⭐</p>
-        `;
-        reviewsContainer.appendChild(reviewDiv);
-    });
 }
