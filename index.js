@@ -180,7 +180,7 @@ function updateStarBars(reviews) {
         let percentage = reviews.length ? (count / reviews.length) * 100 : 0;
         bar.style.width = percentage + "%";
 
-        // ✅ Ensure highest-rated bar turns gold
+
         bar.style.backgroundColor = count === highestCount && count > 0 ? "gold" : "#ccc";
 
         console.log(`Updated bar for ${5 - index} stars: ${percentage}%`);
