@@ -32,7 +32,7 @@ function setupEventListeners() {
 
     document.getElementById("submit-review-btn").addEventListener("click", submitReview);
 
-    // ✅ Stars are clickable for rating selection
+    
     document.querySelectorAll(".star").forEach(star => {
         star.addEventListener("click", (event) => {
             let ratingValue = event.target.dataset.value;
@@ -133,7 +133,6 @@ function submitReview() {
                 alert("Review submitted successfully!");
                 document.getElementById("review-modal").style.display = "none";
 
-                // ✅ Update UI dynamically without refreshing
                 displayCustomerReviews(product.reviews);
                 updateStarBars(product.reviews);
                 document.getElementById("averageRating").innerText = product.rating;
