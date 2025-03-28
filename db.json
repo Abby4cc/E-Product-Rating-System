@@ -1,0 +1,118 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "Chunky Heels",
+      "image": "assets/image 1.jpg",
+      "price": 20,
+      "rating": 4.5,
+      "reviews": [
+        {
+          "name": "Alice",
+          "text": "Great quality and very comfortable!",
+          "rating": 5
+        },
+        {
+          "name": "David",
+          "text": "Good but slightly heavy.",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Leather Bag",
+      "image": "assets/Image 2.jpg",
+      "price": 10,
+      "rating": 4,
+      "reviews": [
+        {
+          "name": "Sophia",
+          "text": "Elegant design and durable.",
+          "rating": 4
+        },
+        {
+          "name": "John",
+          "text": "Nice bag but smaller than expected.",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Dinner Bag",
+      "image": "assets/Image 3.jpg",
+      "price": 9.99,
+      "rating": "3.5",
+      "reviews": [
+        {
+          "name": "Emily",
+          "text": "Perfect for evening parties!",
+          "rating": 5
+        },
+        {
+          "name": "Abby",
+          "text": "Good",
+          "rating": 2
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Stiletto Heels",
+      "image": "assets/image 4.jpg",
+      "price": 29.99,
+      "rating": 4,
+      "reviews": [
+        {
+          "name": "Olivia",
+          "text": "Stylish but a bit hard to walk in.",
+          "rating": 3
+        },
+        {
+          "name": "Emma",
+          "text": "Super comfortable and elegant!",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Ankle Boots",
+      "image": "assets/Image 5.jpg",
+      "price": 15,
+      "rating": 4,
+      "reviews": [
+        {
+          "name": "Michael",
+          "text": "Very warm and stylish.",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Leather Jacket",
+      "image": "assets/image 6.jpg",
+      "price": 8.99,
+      "rating": "3.7",
+      "reviews": [
+        {
+          "name": "Daniel",
+          "text": "Looks great, but the fit is slightly tight.",
+          "rating": 4
+        },
+        {
+          "name": "Sophia",
+          "text": "Really comfortable and stylish!",
+          "rating": 5
+        },
+        {
+          "name": "Abby",
+          "text": "good",
+          "rating": 2
+        }
+      ]
+    }
+  ]
+}
